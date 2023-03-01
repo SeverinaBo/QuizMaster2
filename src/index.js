@@ -1,7 +1,9 @@
 import ReactDOM from 'react-dom/client';
 
 //
-import App from './App';
+
+// eslint-disable-next-line import/extensions
+import App from "./App.js";
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 

@@ -1,14 +1,15 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 // layouts
-import DashboardLayout from './layouts/dashboard';
+
 import SimpleLayout from './layouts/simple';
 //
-import BlogPage from './pages/BlogPage';
-import UserPage from './pages/UserPage';
+import DashboardLayout from "./layouts/dashboard/DashboardLayout";
+
+
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/ProductsPage';
-import DashboardAppPage from './pages/DashboardAppPage';
+import QuizListPage from './pages/QuizListPage';
+import MainAppPage from './pages/MainAppPage';
 
 // ----------------------------------------------------------------------
 
@@ -19,11 +20,9 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
-      ],
+        { path: 'app', element: <MainAppPage /> },
+        { path: 'products', element: <QuizListPage /> },
+        ],
     },
     {
       path: 'login',
