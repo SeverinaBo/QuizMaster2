@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {Helmet} from "react-helmet-async";
-import {Container, Stack, Typography} from "@mui/material";
-import { ProductList} from "../sections/@dashboard/products";
-import PRODUCTS from "../_mock/products";
+import {Button, Typography} from "@mui/material";
+import {LoadingButton} from "@mui/lab";
+import CreateGame from "../Game/CreateGame";
 
 function MainAppPage() {
     const [openFilter, setOpenFilter] = useState(false);
@@ -17,21 +17,13 @@ function MainAppPage() {
 
     return (
         <>
-            <Helmet>
-                <title> Dashboard: Products | Minimal UI </title>
-            </Helmet>
 
-            <Container>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                    Products
-                </Typography>
+            <Typography variant="h4" sx={{ mb: 5 }}>
+                Welcome to Quiz master
+            </Typography>
 
-                <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}/>
-                    <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }} />
+           <CreateGame/>
 
-                <ProductList products={PRODUCTS} />
-
-            </Container>
         </>
     )
 }

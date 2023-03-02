@@ -16,12 +16,12 @@ import MainAppPage from './pages/MainAppPage';
 export default function Router() {
   const routes = useRoutes([
     {
-      path: '/dashboard',
+      path: '/main',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/main/app" />, index: true },
         { path: 'app', element: <MainAppPage /> },
-        { path: 'products', element: <QuizListPage /> },
+        { path: 'quiz_games', element: <QuizListPage /> },
         ],
     },
     {
@@ -31,7 +31,7 @@ export default function Router() {
     {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/main/app" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

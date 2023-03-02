@@ -12,8 +12,8 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'product',
-    path: '/dashboard/products',
+    title: 'quizez',
+    path: '/main/quiz_games',
     icon: icon('ic_cart'),
   },
   {
