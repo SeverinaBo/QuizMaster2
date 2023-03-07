@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 // components
-import Logo from '../../components/logo';
+
 
 // ----------------------------------------------------------------------
 
@@ -23,9 +23,7 @@ const StyledHeader = styled('header')(({ theme }) => ({
 export default function SimpleLayout() {
   return (
     <>
-      <StyledHeader>
-        <Logo />
-      </StyledHeader>
+      <StyledHeader />
 
       <Outlet />
     </>

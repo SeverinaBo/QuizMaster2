@@ -9,7 +9,7 @@ import account from '../../../_mock/account';
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
+    label: 'My Quiz List',
     icon: 'eva:home-fill',
   },
   {
@@ -20,6 +20,7 @@ const MENU_OPTIONS = [
     label: 'Settings',
     icon: 'eva:settings-2-fill',
   },
+
 ];
 
 // ----------------------------------------------------------------------

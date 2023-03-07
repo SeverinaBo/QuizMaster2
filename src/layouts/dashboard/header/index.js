@@ -5,11 +5,11 @@ import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
-import Iconify from '../../../components/iconify';
+
 //
-import Searchbar from './Searchbar';
-import AccountPopover from './AccountPopover';
-import LanguagePopover from './LanguagePopover';
+
+import ResponsiveAppBar from "./ResponsiveAppBar";
+
 
 
 // ----------------------------------------------------------------------
@@ -42,10 +42,13 @@ Header.propTypes = {
   onOpenNav: PropTypes.func,
 };
 
+
+
 export default function Header({ onOpenNav }) {
   return (
     <StyledRoot>
-      <StyledToolbar>
+        <ResponsiveAppBar />
+        <StyledToolbar>
         <IconButton
           onClick={onOpenNav}
           sx={{
@@ -53,11 +56,8 @@ export default function Header({ onOpenNav }) {
             color: 'text.primary',
             display: { lg: 'none' },
           }}
-        >
-          <Iconify icon="eva:menu-2-fill" />
-        </IconButton>
+         />
 
-        <Searchbar />
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack
@@ -67,10 +67,7 @@ export default function Header({ onOpenNav }) {
             xs: 0.5,
             sm: 1,
           }}
-        >
-          <LanguagePopover />
-          <AccountPopover />
-        </Stack>
+         />
       </StyledToolbar>
     </StyledRoot>
   );

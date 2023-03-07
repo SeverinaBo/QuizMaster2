@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+
 // @mui
 import { Container, Stack, Typography } from '@mui/material';
 // components
@@ -7,7 +7,8 @@ import { Container, Stack, Typography } from '@mui/material';
 // ----------------------------------------------------------------------
 
 export default function QuizListPage() {
-  const [openFilter, setOpenFilter] = useState(false);
+
+/*  const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -15,12 +16,12 @@ export default function QuizListPage() {
 
   const handleCloseFilter = () => {
     setOpenFilter(false);
-  };
+  }; */
 
   return (
     <>
       <Helmet>
-        <title> Dashboard: Quizzez | Minimal UI </title>
+        <title> Quizzez | Quizmaster </title>
       </Helmet>
 
       <Container>

@@ -1,22 +1,28 @@
 import ReactDOM from 'react-dom/client';
 
-//
 
 // eslint-disable-next-line import/extensions
+import {BrowserRouter} from "react-router-dom";
 import App from "./App.js";
-import * as serviceWorker from './serviceWorker';
-import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from "./serviceWorker";
+import reportWebVitals from "./reportWebVitals";
+import Routes from './Routes';
 
-// ----------------------------------------------------------------------
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+root.render(
+    // eslint-disable-next-line react/jsx-no-undef
+    <React.StrictMode>
+        <BrowserRouter>
+            <Routes />
+        </BrowserRouter>
+    </React.StrictMode>
+);
+
 root.render(<App />);
 
-// If you want to enable client cache, register instead.
 serviceWorker.unregister();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();

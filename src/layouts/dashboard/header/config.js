@@ -13,12 +13,17 @@ const navConfig = [
   },
   {
     title: 'quizez',
-    path: '/main/quiz_games',
+    path: '/main/games',
     icon: icon('ic_cart'),
   },
   {
     title: 'login',
     path: '/login',
+    icon: icon('ic_lock'),
+  },
+  {
+    title: 'create',
+    path: '/main/create',
     icon: icon('ic_lock'),
   },
   {
