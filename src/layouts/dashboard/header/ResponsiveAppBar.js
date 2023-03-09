@@ -17,10 +17,8 @@ import AccountPopover from "./AccountPopover";
 import HeaderNavigation from "./HeaderNavigation";
 
 
-
-
 function ResponsiveAppBar() {
-    const [ setAnchorElNav] = React.useState(null);
+    const [setAnchorElNav] = React.useState(null);
 
 
     const handleOpenNavMenu = (event) => {
@@ -33,13 +31,13 @@ function ResponsiveAppBar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 
-                    <IconButton sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+                    <IconButton sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}
                                 component={Link}
                                 to={`/`}>
-                        <Avatar alt="logo" src="/assets/illustrations/logoForMain.png"  />
+                        <Avatar alt="logo" src="/assets/illustrations/logoForMain.png"/>
                     </IconButton>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -48,11 +46,11 @@ function ResponsiveAppBar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
 
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                     <Typography
                         variant="h5"
                         noWrap
@@ -60,7 +58,7 @@ function ResponsiveAppBar() {
                         href=""
                         sx={{
                             mr: 2,
-                            display: { xs: 'flex', md: 'none' },
+                            display: {xs: 'flex', md: 'none'},
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
@@ -68,13 +66,14 @@ function ResponsiveAppBar() {
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
-                     />
-                 <HeaderNavigation/>
-                    <LanguagePopover />
-                    <AccountPopover />
+                    />
+                    <HeaderNavigation/>
+                    <LanguagePopover/>
+                    <AccountPopover/>
                 </Toolbar>
             </Container>
         </AppBar>
     );
 }
+
 export default ResponsiveAppBar;

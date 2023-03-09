@@ -1,26 +1,40 @@
+import React from 'react';
+import { Routes, Route, BrowserRouter} from 'react-router-dom';
 
-import { HelmetProvider } from 'react-helmet-async';
-// routes
-import ReactDOM from 'react-dom/client';
-import {BrowserRouter} from "react-router-dom";
-// eslint-disable-next-line import/no-named-as-default
-import Routes from './Routes';
-// theme
-// components
-import ThemeProvider from './theme';
+import MainAppPage from './pages/MainAppPage';
 
-import ScrollToTop from './components/scroll-to-top';
+
+import CreateQuizPage from "./pages/CreateQuizPage";
+import QuizListPage from "./pages/QuizListPage";
+import LoginPage from "./pages/LoginPage";
+import Page404 from "./pages/Page404";
+import JoinGame from "./Game/JoinGame";
+import RegisterPage from "./pages/RegisterPage";
+
+
+
+
 
 // ----------------------------------------------------------------------
 
-export default function App() {
-  return (
-    <HelmetProvider>
-        <ThemeProvider>
-          <ScrollToTop />
 
-          <Routes />
-        </ThemeProvider>
-    </HelmetProvider>
-  );
+
+function App() {
+    return (
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={ <MainAppPage/> }/>
+                    <Route path='/join' element={ <JoinGame/> }/>
+                    <Route path='/create' element={ <CreateQuizPage/> }/>
+                    <Route path='/quizzes' element={ <QuizListPage/> }/>
+                    <Route path='/login' element={ <LoginPage/> }/>
+                    <Route path='/register' element={ <RegisterPage/> }/>
+                    <Route path='/404' element={ <Page404/> }/>
+                    <Route path='/*' element={ <Page404/> }/>
+                </Routes>
+                </BrowserRouter>
+
+    );
 }
+
+export default App;

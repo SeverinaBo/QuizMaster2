@@ -1,44 +1,39 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Button, Grid, TextField} from "@mui/material";
-import {socket} from '../Global/Header';
+
+import {socket} from "../Global/Header";
+import ResponsiveAppBar from "../layouts/dashboard/header/ResponsiveAppBar";
 
 
-export default function JoinGame(props) {
 
-   const[nickname,setNickname] = useState(null);
-    const[pin,setPin] = useState(null);
-    const[message,setMessage] = useState(null);
-    const[disabled,setDisabled] = useState(null);
+export default function JoinGame() {
 
-       useEffect(() => {
+   const[nickname,setNickname] = useState('');
+    const[pin,setPin] = useState('');
+    const[message,setMessage] = useState('');
+    const[disabled,setDisabled] = useState(false);
+
+
+/*       useEffect(() => {
            socket.on("NICKNAME_TAKEN", () => {
                setMessage("Nickname taken");
 
-               setTimeout(() => setMessage(null), 3000);
+               setTimeout(() => setMessage(''), 3000);
            });
 
-           socket.on("GAME_NOT_FOUND", () => {
+           socket.on("PIN_NOT_FOUND", () => {
                setMessage("Not found");
 
-               setTimeout(() => setMessage(null), 3000);
+               setTimeout(() => setMessage(''), 3000);
            });
 
-           socket.on("PLAYER_JOINED_SUCCESSFULLY", (data) => {
-               props.history.push(`/instructions?nickname=${nickname}&pin=${pin}`);
-           });
-
-           return () => {
-               socket.off("NICKNAME_TAKEN");
-               socket.off("GAME_NOT_FOUND");
-               socket.off("PLAYER_JOINED_SUCCESSFULLY");
-           };
-       }, [nickname, pin, props.history]);
+       }, []); */
 
     const handleSubmit = (event) => {
         event.preventDefault();
         socket.emit("PLAYER_JOINED", { nickname, pin });
-        setDisabled(true);
+   /*     setDisabled(false); */
     };
 
     let error;
@@ -50,6 +45,7 @@ export default function JoinGame(props) {
     }
         return (
             <div spacing={2}>
+                <ResponsiveAppBar/>
                 <Grid component="form"
                       sx={{
                           '& .MuiTextField-root': {m: 1, width: '25ch'},
@@ -77,7 +73,7 @@ export default function JoinGame(props) {
                             placeholder="GAME PIN"
                             name="pin"
                             value={pin || ''}
-                            onChange={(event) => setPin(event.target.value)}
+                             onChange={(event) => setPin(event.target.value)}
                             margin="dense"
                             variant="outlined"
                             required
@@ -93,8 +89,8 @@ export default function JoinGame(props) {
                             variant="contained"
                             color="primary"
                             type="submit"
-                            disabled={(event) => disabled(event.target.value)}
-                            fullWidth
+                            disabled={disabled}
+
                         >
                             Enter
                         </Button>
