@@ -1,8 +1,10 @@
-import {Button, Grid, MenuItem, TextField} from "@mui/material";
+import {Button} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
-import {useState} from "react";
+
 import ResponsiveAppBar from "../layouts/dashboard/header/ResponsiveAppBar";
+
+import CreateGameIntro from "../Game/CreateGame";
 
 
 const StyledContent = styled('div')(({theme}) => ({
@@ -16,40 +18,16 @@ const StyledContent = styled('div')(({theme}) => ({
 }));
 
 
-export default function QuestionForm(props) {
-
-    const [name, setName] = useState('');
+export default function CreateQuizPage() {
 
 
     return (
         <>
             <ResponsiveAppBar/>
-            <title> Create quiz | Quizmasters </title>
+
             <StyledContent>
-                <h1>Create New Quiz</h1>
+                <CreateGameIntro/>
 
-                <h3>Created by:</h3>
-                <TextField placeholder="Name"
-                           name="name"
-                           required
-                           fullWidth
-                           onClick={setName}
-                />
-
-                <Button
-                    style={{
-                        fontSize: "1.6rem",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                        margin: "1rem 0"
-                    }}
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-
-                >
-                    Continue
-                </Button>
             </StyledContent>
 
         </>
