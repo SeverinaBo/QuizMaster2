@@ -5,12 +5,13 @@ import { Container, Typography} from '@mui/material';
 
 import {Link} from "react-router-dom";
 import useResponsive from '../hooks/useResponsive';
+import RegForm from "../sections/auth/registration/RegForm";
 // components
 
 
 // sections
 
-import RegistrationForm from "../sections/auth/registration/RegistrationForm";
+
 
 // ----------------------------------------------------------------------
 
@@ -76,8 +77,7 @@ export default function RegisterPage() {
                             <Link to={ "/login" } variant="subtitle2">Log In</Link>
                         </Typography>
 
-
-                        <RegistrationForm/>
+<RegForm/>
                     </StyledContent>
                 </Container>
             </StyledRoot>

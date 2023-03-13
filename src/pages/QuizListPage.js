@@ -1,4 +1,3 @@
-import {Helmet} from 'react-helmet-async';
 
 // @mui
 import {Container, Stack, Typography} from '@mui/material';
@@ -13,7 +12,7 @@ export default function QuizListPage() {
     return (
         <>
 
-            <title> Quizzez | Quizmaster </title>
+
 
             <ResponsiveAppBar/>
 
