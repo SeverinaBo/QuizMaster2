@@ -20,20 +20,30 @@ export default function QuestionForm(props) {
 
     const [name, setName] = useState('');
 
+    const [quizTitle, setQuizTitle] = useState('');
+
 
     return (
         <>
             <ResponsiveAppBar/>
-            <title> Create quiz | Quizmasters </title>
+
             <StyledContent>
                 <h1>Create New Quiz</h1>
 
                 <h3>Created by:</h3>
-                <TextField placeholder="Name"
+                <TextField placeholder="Your name"
                            name="name"
                            required
                            fullWidth
                            onClick={setName}
+                />
+
+                <h3>Quiz Title: </h3>
+                <TextField placeholder="Quiz Title"
+                           name="quizTitle"
+                           required
+                           fullWidth
+                           onClick={setQuizTitle}
                 />
 
                 <Button

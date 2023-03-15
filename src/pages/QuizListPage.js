@@ -2,6 +2,11 @@
 // @mui
 import {Container, Stack, Typography} from '@mui/material';
 import ResponsiveAppBar from "../layouts/dashboard/header/ResponsiveAppBar";
+
+import QuizList from "../Quizzez/QuizList";
+import quizzez from "../_mock/quizzez";
+
+
 // components
 
 // ----------------------------------------------------------------------
@@ -25,7 +30,10 @@ export default function QuizListPage() {
                        sx={{mb: 5}}/>
                 <Stack direction="row" spacing={1} flexShrink={0} sx={{my: 1}}/>
 
+                    <QuizList quizzes={quizzez} />
+
             </Container>
+
         </>
     );
 }

@@ -10,6 +10,10 @@ import LoginPage from "./pages/LoginPage";
 import Page404 from "./pages/Page404";
 import JoinGame from "./Game/JoinGame";
 import RegisterPage from "./pages/RegisterPage";
+import {HelmetProvider} from "react-helmet-async";
+import ThemeProvider from "./theme";
+import ScrollToTop from "./components/scroll-to-top";
+
 
 
 
@@ -21,7 +25,10 @@ import RegisterPage from "./pages/RegisterPage";
 
 function App() {
     return (
+
             <BrowserRouter>
+                <ThemeProvider>
+                    <ScrollToTop />
                 <Routes>
                     <Route path='/' element={ <MainAppPage/> }/>
                     <Route path='/join' element={ <JoinGame/> }/>
@@ -32,7 +39,8 @@ function App() {
                     <Route path='/404' element={ <Page404/> }/>
                     <Route path='/*' element={ <Page404/> }/>
                 </Routes>
-                </BrowserRouter>
+                </ThemeProvider>
+            </BrowserRouter>
 
     );
 }
