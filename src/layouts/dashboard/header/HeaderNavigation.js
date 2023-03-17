@@ -52,7 +52,7 @@ const HeaderNavigation = () => {
 
                 <Button
                     component={Link}
-                    to={'/login'}
+                    to={'/quizForm'}
                     onClick={handleCloseNavMenu}
                     sx={{my: 2, color: 'white', display: 'block'}}
                 >

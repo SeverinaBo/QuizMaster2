@@ -17,13 +17,10 @@ function CreateOrJoin() {
 
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate('/join', {replace: true})
-    };
     return (
         <>
             <StyledSection>
-                <Button type="submit" variant="contained"
+                <Button margin='20' type="submit" variant="contained"
                         onClick={() => {
                             navigate('/create', {replace: true})
                         }}>
@@ -32,7 +29,9 @@ function CreateOrJoin() {
 
 
                 <Button margin='20' type="submit" variant="contained"
-                        onClick={handleClick}>
+                        onClick={() => {
+                            navigate('/join', {replace: true})
+                        }}>
                     Join a game
                 </Button>
             </StyledSection>
