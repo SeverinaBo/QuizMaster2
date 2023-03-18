@@ -5,7 +5,8 @@ import * as React from "react";
 import ResponsiveAppBar from "../layouts/dashboard/header/ResponsiveAppBar";
 import * as Yup from 'yup';
 import {Field, Formik} from "formik";
-import {useCreateQuizDetails} from "../api/quizApi";
+import {useCreateQuizForm} from "../api/quizApi";
+
 
 
 
@@ -35,7 +36,7 @@ const CreateQuizIntroPage = ({fetchQuizzez, onClose, quiz}) => {
 
     const [alertOpen, setAlertOpen] = React.useState(false);
 
-    const createQuiz = useCreateQuizDetails()
+    const createQuiz = useCreateQuizForm();
 
 
     const initialQuizIntroValues = quiz ? {

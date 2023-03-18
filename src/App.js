@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import Page404 from "./pages/Page404";
 import JoinGame from "./Game/JoinGame";
 import RegisterPage from "./pages/RegisterPage";
+import QuizQuestionsList from "./Game/QuizQuestionsList";
 
 import ThemeProvider from "./theme";
 import ScrollToTop from "./components/scroll-to-top";
@@ -17,7 +18,7 @@ import CreateQuizIntroPage from "./pages/CreateQuizIntroPage";
 
 
 import { QueryClient, QueryClientProvider } from "react-query";
-import QuizForm from "./Game/QuizForm";
+
 
 
 
@@ -41,7 +42,7 @@ function App() {
                     <Route path='/create' element={ <CreateQuizIntroPage/> }/>
                     <Route path='/quizzes' element={ <QuizListPage/> }/>
                     <Route path='/login' element={ <LoginPage/> }/>
-                    <Route path='/quizForm' element={ <QuizForm/> }/>
+                    <Route path='/quizCreating' element={ <QuizQuestionsList/> }/>
                     <Route path='/register' element={ <RegisterPage/> }/>
                     <Route path='/404' element={ <Page404/> }/>
                     <Route path='/*' element={ <Page404/> }/>

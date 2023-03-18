@@ -1,19 +1,29 @@
-import ResponsiveAppBar from "../layouts/dashboard/header/ResponsiveAppBar";
-import {Field, Form, Formik, useFormik} from "formik";
+
+import {Field, Formik} from "formik";
 import {
     Button,
-    FormControl,
+    Dialog,
+    Alert,
+    CircularProgress,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
     Grid,
     InputLabel,
     MenuItem,
     Select,
-    TextField,
-    Typography
+    Typography,
+    Snackbar,
 } from "@mui/material";
 import * as React from "react";
 import {styled} from "@mui/material/styles";
-import {useCreateQuizForm} from "../api/quizApi";
+import {useCreateQuizForm, useQuiz} from "../api/quizApi";
 import * as Yup from 'yup'
+
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+
 
 
 export const StyledContent = styled('div')(({theme}) => ({
@@ -27,10 +37,7 @@ export const StyledContent = styled('div')(({theme}) => ({
 }));
 
 
-const QuizForm = () => {
-    /*
-        const [correctAnswer, setCorrectAnswer] = React.useState('');
-        const [timePerQuestion, setTimePerQuestion] = React.useState(0);*/
+
 
 
     const quizFormValidationSchema = Yup.object().shape({
@@ -38,8 +45,8 @@ const QuizForm = () => {
             .min(5, ({label, min}) => `${label} must be greater than ${min} chars`)
             .max(50)
             .required()
-            .label("Question")
-        /*    answerA: Yup.string()
+            .label("Question"),
+            answerA: Yup.string()
                 .required(),
             answerB: Yup.string()
                 .required(),
@@ -48,46 +55,52 @@ const QuizForm = () => {
             answerD: Yup.string()
                 .required(),
             correctAnswer: Yup.string()
-                .required()*/
+                .required()
     })
 
-    const CreateQuizFormModalWithFormik = ({fetchQuizzez, open, onClose, quiz}) => {
+    const QuizForm = ({ fetchQuestions,  onClose, quiz}) => {
+
+        const [open, setOpen] = useState(false);
+
+        const handleClose = () => {
+            setOpen(false);
+        };
+
+        const handleOpen = () => {
+            setOpen(true);
+        };
 
         const [alertOpen, setAlertOpen] = React.useState(false);
-        const createQuizForm = useCreateQuizForm()
+        const createQuizForm = useCreateQuizForm();
+
+        const [correctAnswer, setCorrectAnswer] = React.useState('');
+        const [timePerQuestion, setTimePerQuestion] = React.useState(0);
 
         const initialQuizValues = quiz ? {
             id: quiz.id,
             question: quiz.question,
-            /*    answerA: quiz.answerA,
+                answerA: quiz.answerA,
                 answerB: quiz.answerB,
                 answerC: quiz.answerC,
                 answerD: quiz.answerD,
-                correctAnswer: quiz.correctAnswer*/
+                correctAnswer: quiz.correctAnswer
         } : {
             id: null,
             question: '',
-            /*        answerA: '',
+                    answerA: '',
                     answerB: '',
                     answerC: '',
                     answerD: '',
-                    correctAnswer: ''*/
+                    correctAnswer: ''
         }
 
 
-        /* const [questionCount, setQuestionCount] = React.useState(0);
-    */
 
-        /*  useEffect(() => {
-              document.title = {questionCount};
-          })*/
+            const navigate = useNavigate();
 
-        /*    const navigate = useNavigate();
-
-            const {quizez} = useQuiz(); */
+            const {quizez} = useQuiz();
 
 
-        /*
             const handleAnswerChange = (event) => {
                 setCorrectAnswer(event.target.value);
             };
@@ -95,68 +108,37 @@ const QuizForm = () => {
             const handleTimerChange = (event) => {
                 setTimePerQuestion(event.target.value);
             };
-        */
 
-        /*    const formik = useFormik({
-                initialValues: {
-                    correctAnswer: '',
-                    timePerQuestion:'' ,
-                },
-                onSubmit: (values) => {
-                    console.log(values);
-                },
-            });*/
 
-        /*   const quizElement = quizez.map((quizForm, i) => (
-               <TableRow key={i}>
-                   <TableCell>{quizForm.question}</TableCell>
-                   <TableCell>{quizForm.answerA}</TableCell>
-                   <TableCell>{quizForm.answerB}</TableCell>
-                   <TableCell>{quizForm.answerC}</TableCell>
-                   <TableCell>{quizForm.answerD}</TableCell>
-                   <TableCell>{quizForm.correctAnswer}</TableCell>
-
-                   <IconButton
-                       onClick={() =>
-                           addQuizQuestion({
-                               id: quizForm.id,
-                               question: quizForm.question,
-                               answerA: quizForm.answerA,
-                               answerB: quizForm.answerB,
-                               answerC: quizForm.answerC,
-                               answerD: quizForm.answerD,
-                               correctAnswer: quizForm.correctAnswer,
-                           })
-                       }
-                   >
-                       <AddIcon />
-                   </IconButton>
-               </TableRow> */
-
+        const title = quiz ? "Edit question" : "Add new question"
         return (
             <>
-                <ResponsiveAppBar/>
+
                 <StyledContent>
+                     <Button onClick={handleOpen}>Add new question</Button>
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>{title}</DialogTitle>
 
                     <Grid
                         container
                         direction="row"
                     >
-                        <Typography variant="h3" sx={{mb: 5}}>
-                            Question {/* {questionCount} */}
-                        </Typography>
+
                         <Formik initialValues={initialQuizValues}
                                 onSubmit={async (quiz, {setSubmitting}) => {
                                     await createQuizForm(quiz)
                                     setSubmitting(false)
-
+                                    onClose()
+                                    fetchQuestions()
                                     setAlertOpen(true)
                                 }}
                                 validationSchema={quizFormValidationSchema}>
                             {(props) => {
                                 return (
-                                    <Form>
-                                        <Grid item xs={12}>
+                                    <>
+                                    <DialogContent>
+
+                                            <Typography variant="h7" >Question</Typography>
                                             <Field placeholder="Question"
                                                    name="question"
                                                    required
@@ -165,8 +147,9 @@ const QuizForm = () => {
                                                    margin="dense"
                                                    as={TextField}
                                             />
-                                        </Grid>
-                                        {/*<Grid item md={6} xs={12}>
+
+
+                                            <Typography variant="h7" >A</Typography>
                                 <Field
                                     placeholder="Answer A"
                                     name="a"
@@ -176,8 +159,9 @@ const QuizForm = () => {
                                     required
                                     as={TextField}
                                 />
-                            </Grid>
-                            <Grid item md={6} xs={12}>
+
+
+                                <Typography variant="h7" > B</Typography>
                                 <Field
                                     placeholder="Answer B"
                                     name="b"
@@ -187,8 +171,9 @@ const QuizForm = () => {
                                     required
                                     as={TextField}
                                 />
-                            </Grid>
-                            <Grid item md={6} xs={12}>
+
+
+                                <Typography variant="h7" >C</Typography>
                                 <Field
                                     placeholder="Answer C"
                                     name="c"
@@ -198,8 +183,9 @@ const QuizForm = () => {
                                     required
                                     as={TextField}
                                 />
-                            </Grid>
-                            <Grid item md={6} xs={12}>
+
+
+                                <Typography variant="h7" >D</Typography>
                                 <Field
                                     placeholder="Answer D"
                                     name="d"
@@ -209,14 +195,13 @@ const QuizForm = () => {
                                     required
                                     as={TextField}
                                 />
-                            </Grid>
+
 
                             <Grid item xs={6}
                                   required
                                   top-margin={1}
                             >
-                                <FormControl fullWidth>
-                                    <InputLabel id="select-label">Correct Answer</InputLabel>
+                                <InputLabel id="select-label">Correct Answer</InputLabel>
                                 <Select
                                     value={correctAnswer}
                                     label="Correct Answer"
@@ -231,13 +216,12 @@ const QuizForm = () => {
                                     <MenuItem value="d">D</MenuItem>
                                 </Select>
 
-                                </FormControl>
                             </Grid>
-                            <Grid sx={{minWidth: 120}}
+                            <Grid
                                   item xs={6}
                                   required
                                   top-margin={1}
-                            >
+                             >
                                 <InputLabel id="select-label">Set Time</InputLabel>
                                 <Select
                                     value={timePerQuestion}
@@ -253,75 +237,56 @@ const QuizForm = () => {
                                     <MenuItem value={25}>25 sec</MenuItem>
                                 </Select>
                             </Grid>
-                            <Grid sx={{minWidth: 120}}
-                                  item xs={6}
-                                  required
-                                  top-margin={1}
-                            >
+                                        {props.isSubmitting && <CircularProgress color="inherit"/>}
+                                    </DialogContent>
+
+                                <DialogActions>
                                 <Button
+                                    onClick={onClose}
                                     style={{
                                         fontSize: "1rem",
                                         textAlign: "center",
                                         fontWeight: "bold",
                                         margin: "1rem 0"
                                     }}
-                                    variant="contained"
+
                                     color="info"
                                     fullWidth
                                 >
                                     Cancel
                                 </Button>
-                            </Grid>*/}
-                                        <Grid sx={{minWidth: 120}}
-                                              item xs={6}
-                                              required
-                                              top-margin={1}
-                                        >
                                             <Button
+                                                disabled={props.isSubmitting} onClick={props.submitForm}
+                                                variant="contained"
+                                                fullWidth
                                                 style={{
                                                     fontSize: "1rem",
                                                     textAlign: "center",
                                                     fontWeight: "bold",
                                                     margin: "1rem 0"
                                                 }}
-                                                variant="contained"
-
-                                                fullWidth
                                             >
-                                                Add another question
+                                                Add
                                             </Button>
-                                        </Grid>
 
-                                        {/*  <Grid sx={{minWidth: 120}}
-                                  item xs={12}
-                                  required
-                                  top-margin={1}
-                            >
-                                <Button
-                                    style={{
-                                        fontSize: "1rem",
-                                        textAlign: "center",
-                                        fontWeight: "bold",
-                                        margin: "1rem 0"
-                                    }}
-                                    variant="contained"
-                                    fullWidth
-                                >
-                                    Finish
-                                </Button>
-                            </Grid> */}
-
-
-                                    </Form>
+                                </DialogActions>
+                                    </>
                                 )
                             }
                             }
                         </Formik>
                     </Grid>
+                    </Dialog>
+                    <Snackbar open={alertOpen}
+                              anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                              autoHideDuration={3000}
+                              onClose={() => setAlertOpen(false)}>
+                        <Alert onClose={() => setAlertOpen(false)} severity="success" sx={{width: '100%'}}>
+                           Question created!!!
+                        </Alert>
+                    </Snackbar>
                 </StyledContent>
             </>
         )
-
-    }
 }
 export default QuizForm
