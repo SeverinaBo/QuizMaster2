@@ -58,17 +58,8 @@ export const StyledContent = styled('div')(({theme}) => ({
                 .required()
     })
 
-    const QuizForm = ({ fetchQuestions,  onClose, quiz}) => {
+    const QuizForm = ({ fetchQuestions, open,  onClose, quiz}) => {
 
-        const [open, setOpen] = useState(false);
-
-        const handleClose = () => {
-            setOpen(false);
-        };
-
-        const handleOpen = () => {
-            setOpen(true);
-        };
 
         const [alertOpen, setAlertOpen] = React.useState(false);
         const createQuizForm = useCreateQuizForm();
@@ -115,8 +106,7 @@ export const StyledContent = styled('div')(({theme}) => ({
             <>
 
                 <StyledContent>
-                     <Button onClick={handleOpen}>Add new question</Button>
-                    <Dialog open={open} onClose={handleClose}>
+                    <Dialog open={open} onClose={onClose}>
                         <DialogTitle>{title}</DialogTitle>
 
                     <Grid
@@ -217,26 +207,7 @@ export const StyledContent = styled('div')(({theme}) => ({
                                 </Select>
 
                             </Grid>
-                            <Grid
-                                  item xs={6}
-                                  required
-                                  top-margin={1}
-                             >
-                                <InputLabel id="select-label">Set Time</InputLabel>
-                                <Select
-                                    value={timePerQuestion}
-                                    label="Set time"
-                                    onChange={handleTimerChange}
-                                    name="time"
-                                    placeholder="Set timer"
-                                    fullWidth
-                                >
-                                    <MenuItem value={10}>10 sec</MenuItem>
-                                    <MenuItem value={15}>15 sec</MenuItem>
-                                    <MenuItem value={20}>20 sec</MenuItem>
-                                    <MenuItem value={25}>25 sec</MenuItem>
-                                </Select>
-                            </Grid>
+
                                         {props.isSubmitting && <CircularProgress color="inherit"/>}
                                     </DialogContent>
 
