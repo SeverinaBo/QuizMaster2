@@ -189,8 +189,8 @@ export const StyledContent = styled('div')(({theme}) => ({
 
                             <Grid item xs={6}
                                   required
-                                  top-margin={1}
-                            >
+                                  top-margin={2}
+                           >
                                 <InputLabel id="select-label">Correct Answer</InputLabel>
                                 <Select
                                     value={correctAnswer}
