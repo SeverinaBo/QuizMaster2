@@ -40,7 +40,7 @@ export const StyledContent = styled('div')(({theme}) => ({
 
 
 
-    const quizFormValidationSchema = Yup.object().shape({
+ const quizFormValidationSchema = Yup.object().shape({
         question: Yup.string()
             .min(5, ({label, min}) => `${label} must be greater than ${min} chars`)
             .max(50)
@@ -65,7 +65,7 @@ export const StyledContent = styled('div')(({theme}) => ({
         const createQuizForm = useCreateQuizForm();
 
         const [correctAnswer, setCorrectAnswer] = React.useState('');
-        const [timePerQuestion, setTimePerQuestion] = React.useState(0);
+
 
         const initialQuizValues = quiz ? {
             id: quiz.id,
@@ -96,9 +96,7 @@ export const StyledContent = styled('div')(({theme}) => ({
                 setCorrectAnswer(event.target.value);
             };
 
-            const handleTimerChange = (event) => {
-                setTimePerQuestion(event.target.value);
-            };
+
 
 
         const title = quiz ? "Edit question" : "Add new question"
@@ -187,26 +185,6 @@ export const StyledContent = styled('div')(({theme}) => ({
                                 />
 
 
-                            <Grid item xs={6}
-                                  required
-                                  top-margin={2}
-                           >
-                                <InputLabel id="select-label">Correct Answer</InputLabel>
-                                <Select
-                                    value={correctAnswer}
-                                    label="Correct Answer"
-                                    onChange={handleAnswerChange}
-                                    name="correct"
-                                    placeholder="Correct Answer"
-                                    fullWidth
-                                >
-                                    <MenuItem value="a">A</MenuItem>
-                                    <MenuItem value="b">B</MenuItem>
-                                    <MenuItem value="c">C</MenuItem>
-                                    <MenuItem value="d">D</MenuItem>
-                                </Select>
-
-                            </Grid>
 
                                         {props.isSubmitting && <CircularProgress color="inherit"/>}
                                     </DialogContent>
@@ -243,9 +221,9 @@ export const StyledContent = styled('div')(({theme}) => ({
                                 </DialogActions>
                                     </>
                                 )
-                            }
-                            }
-                        </Formik>
+                        }
+                        }
+                    </Formik>
                     </Grid>
                     </Dialog>
                     <Snackbar open={alertOpen}

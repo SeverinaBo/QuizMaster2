@@ -85,7 +85,7 @@ return (
             <>
 
                 <ResponsiveAppBar/>
-                <Table fullWidth >
+                <Table >
                     <TableHead>
                         <TableRow>
                             <TableCell>Created By</TableCell>

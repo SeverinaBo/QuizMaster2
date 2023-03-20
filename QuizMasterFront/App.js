@@ -39,10 +39,10 @@ function App() {
                 <Routes>
                     <Route path='/' element={ <MainAppPage/> }/>
                     <Route path='/join' element={ <JoinGame/> }/>
-                    <Route path='/create' element={ <CreateQuizIntroPage/> }/>
+                    <Route path='/createIntro' element={ <CreateQuizIntroPage/> }/>
                     <Route path='/quizzes' element={ <QuizListPage/> }/>
                     <Route path='/login' element={ <LoginPage/> }/>
-                    <Route path='/quizCreating' element={ <QuizQuestionsList/> }/>
+                    <Route path='/create' element={ <QuizQuestionsList/> }/>
                     <Route path='/register' element={ <RegisterPage/> }/>
                     <Route path='/404' element={ <Page404/> }/>
                     <Route path='/*' element={ <Page404/> }/>

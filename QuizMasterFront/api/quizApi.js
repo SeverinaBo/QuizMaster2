@@ -6,14 +6,14 @@ const getQuizez = () => HTTP.get("/quiz/all")
     .then(response => response.data)
 
 // http://localhost:8080/quiz/create
-const createQuizForm = (quiz) => HTTP.post("/quiz/create", quiz)
+const createQuizForm = (quizForm) => HTTP.post("/quiz/create", quizForm)
 
-const createQuizJson = (quiz) => HTTP.post("/quiz", {...quiz, name: quiz.quizTitle})
+const createQuizJson = (quizForm) => HTTP.post("/quiz", {...quizForm, name: quizForm.question})
     .then(response => new Promise((resolve) => {
-        setTimeout(() => resolve(response.data), 2000)
+        setTimeout(() => resolve(response.data), 5000)
     }))
 
-// this is custom hook(useQuiz) to fetch quizzez from backend
+// custom hook(useQuiz) to fetch quizzez from backend
 const useQuiz = () => {
     const context = useQuery('getQuizez', getQuizez)
     return {...context, quizez: context.data}

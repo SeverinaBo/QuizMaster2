@@ -34,7 +34,7 @@ const HeaderNavigation = () => {
 
                 <Button
                     component={Link}
-                    to={'/create'}
+                    to={'/createIntro'}
                     onClick={handleCloseNavMenu}
                     sx={{my: 2, color: 'white', display: 'block'}}
                 >
@@ -52,7 +52,7 @@ const HeaderNavigation = () => {
 
                 <Button
                     component={Link}
-                    to={'/quizCreating'}
+                    to={'/create'}
                     onClick={handleCloseNavMenu}
                     sx={{my: 2, color: 'white', display: 'block'}}
                 >
