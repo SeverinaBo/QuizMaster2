@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/back-end/pom.xml" />
+        <option value="$PROJECT_DIR$/QuizMasterBackEndApppliaction/pom.xml" />
       </list>
     </option>
   </component>
