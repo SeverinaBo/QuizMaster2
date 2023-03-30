@@ -12,7 +12,7 @@ This project was created using:
 
 How to start the application? 
 Download git code and run:
-\n| step - npm install
-/n|| step - npm run.
+| step - npm install
+|| step - npm run.
 
 Happy using :)
