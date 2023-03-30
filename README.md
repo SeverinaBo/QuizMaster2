@@ -1,3 +1,6 @@
+My app is on myMain branch, not on main.
+
+
 QUIZMASTER WEB(inspiration from popular online quiz game "Kahoot")
 
 This project was created using:
@@ -5,3 +8,11 @@ This project was created using:
 - React JS.(Client side)
 - Spring Boot - REST API (Server side)
 - H2 database to start the application.
+
+
+How to start the application? 
+Download git code and run:
+| step - npm install
+|| step - npm run.
+
+Happy using :)
